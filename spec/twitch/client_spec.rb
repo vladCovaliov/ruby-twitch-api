@@ -89,5 +89,18 @@ RSpec.describe Twitch::Client do
       end
     end
   end
+
+  describe '#get_stream_tags' do
+    it 'can get the tags assigned to a stream' do
+      test_user_id = 42776357
+
+      VCR.use_cassette('get_tags_user_playhearthstone') do
+        res = @client.get_stream_tags({broadcaster_id: test_user_id})
+
+        expect(res.data).to_not be_empty
+        expect(res.data[0].localization_names).to include('en-us')
+      end
+    end
+  end
     
 end

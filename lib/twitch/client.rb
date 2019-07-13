@@ -12,6 +12,7 @@ require "twitch/model/game_analytic"
 require "twitch/model/stream"
 require "twitch/model/stream_marker"
 require "twitch/model/stream_metadata"
+require "twitch/model/stream_tag"
 require "twitch/model/user"
 require "twitch/model/user_follow"
 require "twitch/model/video"
@@ -101,6 +102,14 @@ Unpredictable behavior may follow.})
 
     def get_streams_metadata(options = {})
       Response.new(StreamMetadata, get('streams/metadata', options))
+    end
+
+    def get_all_stream_tags(options = {})
+      Response.new(StreamTag, get('tags/streams', options))
+    end
+
+    def get_stream_tags(options = {})
+      Response.new(StreamTag, get('streams/tags', options))
     end
 
     def get_users_follows(options = {})
