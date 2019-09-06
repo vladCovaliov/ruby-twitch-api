@@ -70,6 +70,12 @@ Unpredictable behavior may follow.})
       Response.new(StreamMarker, post('streams/markers', options))
     end
 
+    def create_webhook(options = {})
+      res = post('webhooks/hub', options)
+
+      res[:http_res]&.status == 202
+    end
+
     def get_clips(options = {})
       Response.new(Clip, get('clips', options))
     end
